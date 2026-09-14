@@ -9,7 +9,7 @@
   <header> <a href="./detalle.html">Volver al Detalle del Taller</a> </header>
 
   <main> 
-    <form class="formulario-registro" >
+    <form class="formulario-registro" novalidate>
       <h1>Formulario de Registro de Asistencia</h1>
 
       <label for="nombre">Nombre Completo:</label>
@@ -21,6 +21,24 @@
       <button type="submit">Registrar Asistencia</button>
     </form>
   </main>
+
+  <script>
+    var form = document.querySelector(".formulario-registro");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      form.classList.remove("error", "exito");
+
+      var nombre = document.getElementById("nombre").value;
+      var boleta = document.getElementById("boleta").value;
+
+      if (nombre === "" || boleta === "") {
+        form.classList.add("error");
+      } else {
+        form.classList.add("exito");
+      }
+    });
+  </script>
 
 </body>
 </html>

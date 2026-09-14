@@ -61,3 +61,51 @@ footer{
 .tarjeta a:hover {
     text-decoration: underline;
 }
+
+/* Formulario de registro */
+
+.formulario-registro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+}
+
+.formulario-registro input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+}
+
+.formulario-registro button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #0f172a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.formulario-registro button:hover {
+    background-color: #334155;
+}
+
+.formulario-registro.error {
+    border: 2px solid #dc2626;
+    background-color: #fef2f2;
+}
+
+.formulario-registro input:invalid {
+    border-color: #dc2626;
+}
+
+.formulario-registro.exito {
+    border: 2px solid #16a34a;
+    background-color: #f0fdf4;
+}
