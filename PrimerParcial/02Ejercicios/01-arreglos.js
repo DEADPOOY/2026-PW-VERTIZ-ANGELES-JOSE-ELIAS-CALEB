@@ -13,8 +13,14 @@ const talleres = [
 console.log("Aplicando un forEach para imprimir los talleres:");
 talleres.forEach((t) => console.log(`- ${t.nombre}(${t.inscritos}/${t.cupo})`))
 // TODO: map — crea un arreglo `nombres` solo con los nombres de los talleres
+console.log("aplicando funcion map con solo nombres")
+const nombres = talleres.map((t) => t.nombre);
+console.log(nombres);
 
 // TODO: filter — crea un arreglo `llenos` con los talleres donde inscritos >= cupo
+console.log("aplicando la funcion filter en los talleres")
+const llenos = talleres.filter((t) => t.inscritos >= t.cupo);
+console.log(llenos.map((t) => t.nombre))
 
 // TODO: find — encuentra el PRIMER taller impartido por 'Ing. María López'
 
