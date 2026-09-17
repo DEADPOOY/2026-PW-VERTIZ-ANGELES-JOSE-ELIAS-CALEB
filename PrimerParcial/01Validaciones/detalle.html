@@ -2,32 +2,64 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Taller - CECyT 9</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <header> <a href="./index.html">Volver al Catálogo</a></header>
+  <header>
+    <p><a href="./index.html">Volver al Catálogo</a></p>
+    <h1>Detalle del Taller</h1>
+  </header>
 
-  <main> 
+  <main>
     <section class="info-taller">
-      <article class="tarjeta" >
-        <h2>Introducción a Python</h2>
-        <p>Instructor: Ing. Maria Conchita Alonso</p>
-        <p>Fecha: 15/04/2023</p>
-        <p>Asistententes Registrados: 12/30</p>
-        <p> <a href="./registro.html">Registrar Asistencia</a> </p>
+      <article class="tarjeta">
+        <h2 id="taller-titulo">Introducción a Python</h2>
+        <p id="taller-instructor">Instructor: Ing. Maria Conchita Alonso</p>
+        <p id="taller-fecha">Fecha: 15/04/2023</p>
+        <p>Asistentes registrados: 12/30</p>
+        <p><a id="enlace-registro" href="./registro.html?taller=python">Registrar Asistencia</a></p>
       </article>
     </section>
 
-    <section class="bitacora" >
+    <section class="bitacora">
       <h2>Bitácora de Asistencias</h2>
       <ul>
-        <li> Juanito Perez - Boleta: 20266345890  </li>
-        <li> Juanita Perez - Boleta: 20266345891  </li>
-        <li> Pedro Perez - Boleta: 20266345892  </li>
+        <li>Juanito Perez - Boleta: 2026634589</li>
+        <li>Juanita Perez - Boleta: 2026634590</li>
+        <li>Pedro Perez - Boleta: 2026634591</li>
       </ul>
     </section>
   </main>
 
+  <script>
+    var talleres = {
+      python: {
+        titulo: "Introducción a Python",
+        instructor: "Instructor: Ing. Maria Conchita Alonso",
+        fecha: "Fecha: 15/04/2023"
+      },
+      redes: {
+        titulo: "Redes y Compus",
+        instructor: "Instructor: Ing. Homero H Thomson",
+        fecha: "Fecha: 15/04/2023"
+      },
+      zelda: {
+        titulo: "Analisis de Porque no me Alcanza para el Nuevo Zelda",
+        instructor: "Instructor: Ing. Porque eres Pobre",
+        fecha: "Fecha: 15/04/2023"
+      }
+    };
+
+    var params = new URLSearchParams(window.location.search);
+    var clave = params.get("taller") || "python";
+    var taller = talleres[clave] || talleres.python;
+
+    document.getElementById("taller-titulo").textContent = taller.titulo;
+    document.getElementById("taller-instructor").textContent = taller.instructor;
+    document.getElementById("taller-fecha").textContent = taller.fecha;
+    document.getElementById("enlace-registro").href = "./registro.html?taller=" + clave;
+  </script>
 </body>
 </html>

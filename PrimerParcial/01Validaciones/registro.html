@@ -2,43 +2,52 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Asistencia - CECyT 9</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <header> <a href="./detalle.html">Volver al Detalle del Taller</a> </header>
+  <header>
+    <p><a id="enlace-detalle" href="./detalle.html">Volver al Detalle del Taller</a></p>
+    <h1>Registrar Asistencia</h1>
+  </header>
 
-  <main> 
-    <form class="formulario-registro" novalidate>
+  <main>
+    <form id="form-registro" class="formulario-registro" novalidate>
       <h1>Formulario de Registro de Asistencia</h1>
+      <p id="taller-nombre">Taller: Introducción a Python</p>
 
       <label for="nombre">Nombre Completo:</label>
-      <input type="text" id="nombre" name="nombre" required>
+      <input type="text" id="nombre" name="nombre" maxlength="60" required>
+      <span id="error-nombre" class="error-campo"></span>
 
       <label for="boleta">Número de Boleta:</label>
-      <input type="text" id="boleta" name="boleta" required>
+      <input type="text" id="boleta" name="boleta" inputmode="numeric" maxlength="10" required>
+      <span id="error-boleta" class="error-campo"></span>
+
+      <label for="fecha">Fecha de asistencia:</label>
+      <input type="text" id="fecha" name="fecha" placeholder="DD/MM/AAAA" maxlength="10" required>
+      <span id="error-fecha" class="error-campo"></span>
 
       <button type="submit">Registrar Asistencia</button>
+      <p id="mensaje-exito" class="mensaje-exito"></p>
     </form>
   </main>
 
+  <script src="./js/validaciones.js"></script>
   <script>
-    var form = document.querySelector(".formulario-registro");
+    var talleres = {
+      python: "Introducción a Python",
+      redes: "Redes y Compus",
+      zelda: "Analisis de Porque no me Alcanza para el Nuevo Zelda"
+    };
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      form.classList.remove("error", "exito");
+    var params = new URLSearchParams(window.location.search);
+    var clave = params.get("taller") || "python";
+    var nombreTaller = talleres[clave] || talleres.python;
 
-      var nombre = document.getElementById("nombre").value;
-      var boleta = document.getElementById("boleta").value;
-
-      if (nombre === "" || boleta === "") {
-        form.classList.add("error");
-      } else {
-        form.classList.add("exito");
-      }
-    });
+    document.getElementById("taller-nombre").textContent = "Taller: " + nombreTaller;
+    document.getElementById("enlace-detalle").href = "./detalle.html?taller=" + clave;
   </script>
-
 </body>
 </html>
