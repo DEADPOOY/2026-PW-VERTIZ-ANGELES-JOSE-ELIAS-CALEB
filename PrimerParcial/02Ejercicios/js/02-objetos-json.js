@@ -43,6 +43,8 @@ if (typeof document !== 'undefined') {
         const seleccionTaller = document.getElementById('taller-objeto');
         const operacionObjeto = document.getElementById('operacion-objeto');
         const resultadoObjeto = document.getElementById('resultado-objeto');
+        const contenedorGato = document.getElementById('contenedor-gato');
+        const videoGato = document.getElementById('video-gato');
 
         // se llena el select con el nombre de cada taller
         talleres.forEach((t, indice) => {
@@ -54,6 +56,18 @@ if (typeof document !== 'undefined') {
 
         formularioObjetos.addEventListener('submit', function (evento) {
             evento.preventDefault();
+
+            // operacion especial: en vez de imprimir texto se muestra el gato
+            if (operacionObjeto.value === 'gato') {
+                contenedorGato.hidden = false;
+                resultadoObjeto.textContent = 'Reproduciendo el video del gato...';
+                videoGato.play();
+                return;
+            }
+
+            // si no es el gato, el video se esconde y se detiene
+            contenedorGato.hidden = true;
+            videoGato.pause();
 
             const tallerElegido = talleres[Number(seleccionTaller.value)];
             let resultado;

@@ -68,6 +68,7 @@
                         <option value="keys">Object.keys - Propiedades</option>
                         <option value="values">Object.values - Valores</option>
                         <option value="entries">Object.entries - Campos y valores</option>
+                        <option value="gato">Ver gato bailando</option>
                     </select>
                 </div>
 
@@ -75,6 +76,14 @@
             </form>
 
             <output class="resultado" id="resultado-objeto" for="formulario-objetos"></output>
+
+            <div class="video-gato" id="contenedor-gato" hidden>
+                <h3>Este es el gato bailando</h3>
+                <video id="video-gato" class="video" controls loop muted playsinline>
+                    <source src="videos/videoplayback.mp4" type="video/mp4">
+                    Tu navegador no puede reproducir este video.
+                </video>
+            </div>
         </section>
     </main>
 
