@@ -27,6 +27,17 @@ body {
     font-size: 1.5rem;
 }
 
+.header p {
+    margin: 0.5rem 0 0;
+}
+
+.header a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 .content {
     padding: 1.5rem 0;
 }
@@ -57,4 +68,22 @@ body {
 
 .tabla a {
     color: #0f172a;
+}
+
+.enlaces_extra {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+
+.enlaces_extra p {
+    margin: 0.4rem 0;
+}
+
+.enlaces_extra a {
+    color: #0f172a;
+    font-weight: 600;
 }

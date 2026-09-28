@@ -1,0 +1,140 @@
+/* CSS basico para la pagina de ejercicios de arreglos */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, Arial, sans-serif;
+    color: #1f2937;
+    background-color: #f9fafb;
+}
+
+header {
+    background-color: #0f172a;
+    color: #ffffff;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Barra de navegacion para poder regresar a la pagina anterior */
+
+.barra-navegacion {
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.9rem;
+}
+
+.barra-navegacion a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.barra-navegacion a:hover {
+    text-decoration: underline;
+}
+
+code {
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.25rem;
+    background-color: #e5e7eb;
+    color: #0f172a;
+    font-size: 0.9em;
+}
+
+main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.ejercicio {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.ejercicio h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+/* Tabla de talleres */
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+#tabla-talleres {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabla-talleres th,
+#tabla-talleres td {
+    border: 1px solid #d1d5db;
+    padding: 0.6rem;
+    text-align: left;
+}
+
+#tabla-talleres th {
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+/* Formulario de operacion */
+
+.formulario {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.campos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.campos select {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+}
+
+.formulario button {
+    padding: 0.55rem 1rem;
+    background-color: #0f172a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.formulario button:hover {
+    background-color: #334155;
+}
+
+/* Resultado: pre-wrap para que se vean los saltos de linea */
+
+.resultado {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    min-height: 1.5rem;
+    white-space: pre-wrap;
+    background-color: #f1f5f9;
+    border: 1px dashed #94a3b8;
+    border-radius: 0.25rem;
+    font-family: Consolas, monospace;
+}

@@ -34,6 +34,19 @@ header a:hover {
     text-decoration: underline;
 }
 
+/* Barra de navegacion para poder regresar a la pagina anterior */
+
+.barra-navegacion {
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    font-size: 0.9rem;
+}
+
+.barra-navegacion a {
+    margin: 0 0.35rem;
+}
+
 main {
     max-width: 960px;
     margin: 0 auto;

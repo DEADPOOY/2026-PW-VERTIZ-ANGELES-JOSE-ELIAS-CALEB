@@ -8,7 +8,11 @@
 </head>
 <body>
   <header>
-    <p><a id="enlace-detalle" href="./detalle.html">Volver al Detalle del Taller</a></p>
+    <p class="barra-navegacion">
+      <a id="enlace-detalle" href="./detalle.html">&larr; Volver al Detalle del Taller</a>
+      <span>|</span>
+      <a href="./index.html">Catalogo</a>
+    </p>
     <h1>Registrar Asistencia</h1>
   </header>
 
@@ -34,7 +38,7 @@
     </form>
   </main>
 
-  <script src="./js/validaciones.js"></script>
+  <script src="./validaciones.js"></script>
   <script>
     var talleres = {
       python: "Introducción a Python",
