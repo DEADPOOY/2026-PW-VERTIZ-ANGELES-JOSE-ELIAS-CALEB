@@ -1,6 +1,6 @@
 // Configuración Next.js - Proxy para APIs externas
 const MINI_SERVIDOR_URL = 'http://localhost:4000';  // Express mini servidor
-const BACKEND_URL = 'http://localhost:3306';        // Backend principal
+const BACKEND_URL = 'http://localhost:3307';        // Backend principal (MySQL)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
