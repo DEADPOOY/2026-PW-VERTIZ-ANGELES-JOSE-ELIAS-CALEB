@@ -7,7 +7,7 @@ CREATE DATABASE IF NOT EXISTS mierda_batiz
     COLLATE utf8mb4_unicode_ci;
     -- pa que la meirda al momento de buscar busque chido ahi dice ci es case insensitive
 
-USE cecyt9_local;
+USE mierda_batiz;
 
 
 -- usuarios

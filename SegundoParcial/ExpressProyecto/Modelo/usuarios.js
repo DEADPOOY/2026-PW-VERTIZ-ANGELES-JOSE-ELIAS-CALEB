@@ -1,4 +1,4 @@
-const pool = requiere('../db-local');
+const pool = require('../db-local');
 //pregunta que es pool? en lugar de abrir o cerrar consulta es lento
 const COLUMNAS_PUBLICAS = 'id, nombre, correo, boleta, rol';
 
@@ -27,7 +27,8 @@ async function actualizar(id, {nombre, correo, rol}) {
     const cambios = Object.entries({nombre, correo, rol}).filter(([, valor]) => valor !== undefined);
     if(cambios.length === 0) return obtenerPorId(id);
 
-    const columnas = cambios.map(([columna]) => `${columnas} WHERE id = ?`, [...cambios.map(([, valor]) => valor), id]);
+    const columnas = cambios.map(([columna]) => `${columna} = ?`).join(', ');
+    const [info] = await pool.query(`UPDATE usuarios SET ${columnas} WHERE id = ?`, [...cambios.map(([, valor]) => valor), id]);
     if(info.affectedRows === 0) return undefined;
     return obtenerPorId(id);
 }

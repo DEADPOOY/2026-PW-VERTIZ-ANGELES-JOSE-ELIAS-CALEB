@@ -11,13 +11,13 @@ function validarCorreo(correo){
 
 //aqui va funcion de boleta
 function validarBoleta(boleta) {
-    if (typeof boleta |== 'string') return false;
+    if (typeof boleta !== 'string') return false;
     const patronBoleta = /^\d{10}$/;
     return patronBoleta.test(boleta.trim());
 }
 
 //funcion contraseña gracias profe
-funcion validarContrasena(contrasena){
+function validarContrasena(contrasena){
     if (typeof contrasena !== 'string') return false;
     return contrasena.length >= 8;
 }

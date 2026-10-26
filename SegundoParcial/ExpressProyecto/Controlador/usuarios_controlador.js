@@ -66,7 +66,7 @@ async function actualizarUsuario(req, res) {
         if(!usuario) return res.status(404).json({error: 'Usuario no encontrado'});
         res.status(200).json(usuario);
     }catch(error){
-        if(esDuplicado(error)) res.status(409).json({error: 'Ya existe un usuario con ese correo, ingresa uno diferente'});
+        if(esDuplicado(error)) return res.status(409).json({error: 'Ya existe un usuario con ese correo, ingresa uno diferente'});
         res.status(500).json({error: error.message});
     }
     
