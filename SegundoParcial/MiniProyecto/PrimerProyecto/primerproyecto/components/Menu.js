@@ -1,12 +1,11 @@
-// Menu.js - Navegación global
-import Link from 'next/link';
+import Link from 'next/link'
 
-export default function Menu() {
-  return (
-    <nav>
-      <Link href="/">Inicio</Link>
-      <Link href="/mini-servidor">Mi Primer Proyecto</Link>
-      <Link href="/practica/1">Pagina 2</Link>
-    </nav>
-  );
+export default function Menu(){
+    return (
+        <nav>
+            <Link href="/" >Inicio</Link>
+            <Link href="/" >MiPrimerProyecto</Link>
+            <Link href="/" >Pagina2</Link>
+        </nav>
+    );
 }
