@@ -45,5 +45,14 @@ async function buscarPorCorreoConHash(correo) {
     return filas[0];
 }
 
+//buscar por boleta (para inscribir desde el front)
+async function buscarPorBoleta(boleta) {
+    const [filas] = await pool.query(
+        `SELECT id, nombre, correo, boleta, rol FROM usuarios WHERE boleta = ?`,
+        [boleta]
+    );
+    return filas[0];
+}
+
 //siempre es necesario exportar las funciones para poder crear su api
-module.exports = {listar, obtenerPorId, crear, actualizar, eliminar, buscarPorCorreoConHash};
+module.exports = {listar, obtenerPorId, crear, actualizar, eliminar, buscarPorCorreoConHash, buscarPorBoleta};

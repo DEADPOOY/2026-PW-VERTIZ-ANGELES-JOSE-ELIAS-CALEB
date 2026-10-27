@@ -8,10 +8,12 @@ const COLUMNAS_PUBLICAS = 'id, usuario_id, taller_id, fecha_asistencia, creado_e
 async function listar() {
     const [filas] = await pool.query(`
         SELECT a.id, a.usuario_id, a.taller_id, a.fecha_asistencia, a.creado_en,
-               u.nombre AS usuario_nombre, u.boleta,
+               COALESCE(a.nombre_alumno, u.nombre) AS nombre_alumno,
+               COALESCE(a.nombre_alumno, u.nombre) AS usuario_nombre,
+               COALESCE(a.boleta, u.boleta) AS boleta,
                t.nombre AS taller_nombre
         FROM asistencias a
-        INNER JOIN usuarios u ON a.usuario_id = u.id
+        LEFT JOIN usuarios u ON a.usuario_id = u.id
         INNER JOIN talleres t ON a.taller_id = t.id
         ORDER BY a.fecha_asistencia DESC`);
     return filas;
@@ -21,20 +23,23 @@ async function listar() {
 async function obtenerPorId(id) {
     const [filas] = await pool.query(`
         SELECT a.id, a.usuario_id, a.taller_id, a.fecha_asistencia, a.creado_en,
-               u.nombre AS usuario_nombre, u.boleta,
+               COALESCE(a.nombre_alumno, u.nombre) AS nombre_alumno,
+               COALESCE(a.nombre_alumno, u.nombre) AS usuario_nombre,
+               COALESCE(a.boleta, u.boleta) AS boleta,
                t.nombre AS taller_nombre
         FROM asistencias a
-        INNER JOIN usuarios u ON a.usuario_id = u.id
+        LEFT JOIN usuarios u ON a.usuario_id = u.id
         INNER JOIN talleres t ON a.taller_id = t.id
         WHERE a.id = ?`, [id]);
     return filas[0];
 }
 
 //registrar asistencia en un taller
-async function crear({usuario_id, taller_id}) {
+async function crear({usuario_id = null, taller_id, nombre_alumno = null, boleta = null}) {
     const [info] = await pool.query(`
-        INSERT INTO asistencias (usuario_id, taller_id) VALUES (?, ?)`,
-    [usuario_id, taller_id]);
+        INSERT INTO asistencias (usuario_id, taller_id, nombre_alumno, boleta)
+        VALUES (?, ?, ?, ?)`,
+    [usuario_id, taller_id, nombre_alumno, boleta]);
     return obtenerPorId(info.insertId);
 }
 
@@ -71,12 +76,32 @@ async function listarPorUsuario(usuario_id) {
 async function listarPorTaller(taller_id) {
     const [filas] = await pool.query(`
         SELECT a.id, a.usuario_id, a.taller_id, a.fecha_asistencia, a.creado_en,
-               u.nombre AS usuario_nombre, u.boleta
+               COALESCE(a.nombre_alumno, u.nombre) AS nombre_alumno,
+               COALESCE(a.nombre_alumno, u.nombre) AS usuario_nombre,
+               COALESCE(a.boleta, u.boleta) AS boleta
         FROM asistencias a
-        INNER JOIN usuarios u ON a.usuario_id = u.id
+        LEFT JOIN usuarios u ON a.usuario_id = u.id
         WHERE a.taller_id = ?
         ORDER BY a.fecha_asistencia DESC`, [taller_id]);
     return filas;
 }
 
-module.exports = {listar, obtenerPorId, crear, actualizar, eliminar, listarPorUsuario, listarPorTaller};
+//buscar una inscripción por boleta y taller (para no duplicar)
+async function buscarPorBoletaYTaller(boleta, taller_id) {
+    const [filas] = await pool.query(
+        `SELECT id FROM asistencias WHERE boleta = ? AND taller_id = ? LIMIT 1`,
+        [boleta, taller_id]
+    );
+    return filas[0];
+}
+
+module.exports = {
+    listar,
+    obtenerPorId,
+    crear,
+    actualizar,
+    eliminar,
+    listarPorUsuario,
+    listarPorTaller,
+    buscarPorBoletaYTaller,
+};

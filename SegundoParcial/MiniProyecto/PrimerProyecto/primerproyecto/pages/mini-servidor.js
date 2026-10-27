@@ -11,8 +11,8 @@ export default function MiniServidor(){
     useEffect(()=>{
         fetch('/mini/saludo')
         .then((res) => res.json())
-        .then((data)=>setSaludo(data.mesaje))
-        .catch(()=>setError('El mini servidor no responde arrancalo con npm start en el puerto 4000'));
+        .then((data)=>setSaludo(data.mensaje))
+        .catch(()=>setError('El mini servidor no responde: arráncalo con npm start en el puerto 4000'));
     }, []);
 
     async function enviarEco(e) {

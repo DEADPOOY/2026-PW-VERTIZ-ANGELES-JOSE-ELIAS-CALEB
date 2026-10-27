@@ -43,7 +43,9 @@ CREATE TABLE IF NOT EXISTS talleres (
 
 CREATE TABLE IF NOT EXISTS asistencias (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    usuario_id INT NOT NULL,
+    usuario_id INT NULL,
+    nombre_alumno VARCHAR(100) NULL,
+    boleta VARCHAR(10) NULL,
     taller_id INT NOT NULL,
     fecha_asistencia TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

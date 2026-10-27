@@ -31,6 +31,13 @@ app.put('/api/usuarios/:id', usuarios.actualizarUsuario);
 app.delete('/api/usuarios/:id', usuarios.eliminarUsuario);
 
 app.get('/api/talleres', talleres.listarTalleres);
+
+// Alias que usa el front de la guía: /api/talleres/:id/asistencias
+app.get('/api/talleres/:id/asistencias', (req, res) => {
+  req.params.taller_id = req.params.id;
+  asistencias.listarAsistenciasPorTaller(req, res);
+});
+
 app.get('/api/talleres/:id', talleres.obtenerTaller);
 app.post('/api/talleres', talleres.crearTaller);
 app.put('/api/talleres/:id', talleres.actualizarTaller);

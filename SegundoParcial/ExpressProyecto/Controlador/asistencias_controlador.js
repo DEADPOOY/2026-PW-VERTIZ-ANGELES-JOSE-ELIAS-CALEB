@@ -1,5 +1,7 @@
 //necesitamos al modelo
 const asistenciasModel = require('../Modelo/asistencias');
+const usuariosModel = require('../Modelo/usuarios');
+const {validarBoleta} = require('../validaciones');
 
 //consultar lista de asistencias
 async function listarAsistencias(req, res) {
@@ -23,15 +25,55 @@ async function obtenerAsistencia(req, res) {
 }
 
 //registrar asistencia en un taller
+// Acepta las dos formas:
+//   {usuario_id, taller_id}
+//   {taller_id, nombre_alumno, boleta}  (la que usa el front de la guía)
 async function crearAsistencia(req, res) {
-    const {usuario_id, taller_id} = req.body;
-    if(!usuario_id || !taller_id){
-        return res.status(400).json({error: 'El usuario_id y taller_id son obligatorios'});
+    const {usuario_id, taller_id, nombre_alumno, boleta} = req.body;
+    const boletaTexto = boleta ? String(boleta).trim() : null;
+
+    if(!taller_id){
+        return res.status(400).json({error: 'El taller_id es obligatorio'});
     }
+    if(!usuario_id && !boletaTexto){
+        return res.status(400).json({error: 'Falta usuario_id o boleta'});
+    }
+    if(boletaTexto && !validarBoleta(boletaTexto)){
+        return res.status(400).json({error: 'La boleta debe tener 10 dígitos'});
+    }
+
     try{
-        const asistencia = await asistenciasModel.crear({usuario_id, taller_id});
+        let usuarioId = usuario_id || null;
+        let nombre = null;
+        let boletaFinal = null;
+
+        // Si viene boleta, se busca al usuario. Si no existe, la asistencia
+        // se guarda con nombre_alumno y boleta (alumno sin cuenta).
+        if(!usuarioId && boletaTexto){
+            const usuario = await usuariosModel.buscarPorBoleta(boletaTexto);
+            if(usuario){
+                usuarioId = usuario.id;
+            }else{
+                const existente = await asistenciasModel.buscarPorBoletaYTaller(boletaTexto, taller_id);
+                if(existente){
+                    return res.status(409).json({error: 'Esa boleta ya está inscrita en este taller.'});
+                }
+                nombre = nombre_alumno || 'Alumno sin cuenta';
+                boletaFinal = boletaTexto;
+            }
+        }
+
+        const asistencia = await asistenciasModel.crear({
+            usuario_id: usuarioId,
+            taller_id,
+            nombre_alumno: nombre,
+            boleta: boletaFinal,
+        });
         res.status(201).json(asistencia);
     }catch(error){
+        if(error.code === 'ER_DUP_ENTRY'){
+            return res.status(409).json({error: 'Esa boleta ya está inscrita en este taller.'});
+        }
         res.status(500).json({error: error.message});
     }
 }
