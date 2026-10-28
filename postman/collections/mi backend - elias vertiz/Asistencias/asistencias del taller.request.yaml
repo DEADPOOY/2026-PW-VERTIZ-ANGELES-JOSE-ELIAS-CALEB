@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/talleres/{{tallerId}}/asistencias"
+method: GET
+order: 2000

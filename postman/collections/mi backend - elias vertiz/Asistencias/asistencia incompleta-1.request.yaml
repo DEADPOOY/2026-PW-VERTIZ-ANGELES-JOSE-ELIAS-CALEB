@@ -1,0 +1,13 @@
+$kind: http-request
+name: asistencia incompleta
+url: "{{baseUrl}}/api/asistencias"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "taller_id": 99999,
+        "nombre_alumno": "Vertiz Angeles Jose Elias Caleb",
+        "boleta": "2025090784"
+    }
+order: 4000

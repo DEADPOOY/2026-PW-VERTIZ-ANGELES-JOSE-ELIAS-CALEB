@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/asistencias"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "nombre_alumno": "Vertiz Angeles Jose Elias Caleb"
+    }
+order: 3000

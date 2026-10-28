@@ -1,0 +1,392 @@
+{
+  "info": {
+    "_postman_id": "de0Ddf4d90DAd5A8d467b1Aa",
+    "name": "mi backend - elias vertiz",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Talleres",
+      "item": [
+        {
+          "name": "listar talleres",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres"
+          },
+          "response": []
+        },
+        {
+          "name": "ver un taller",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres/{{tallerId}}"
+          },
+          "response": []
+        },
+        {
+          "name": "ver un taller que no existe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres/9999999"
+          },
+          "response": []
+        },
+        {
+          "name": "crea un taller",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nombre\": \"taller de tu puta madre\",\n    \"descripcion\": \"probandome esta\",\n    \"instructor\": \"yo merengues\",\n    \"fecha\": \"2026-11-20\",\n    \"cupo\": 15\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "crear taller sin nombre",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"instructor\": \"otra vez yo\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Asistencias",
+      "item": [
+        {
+          "name": "registrar una asis",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/asistencias",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"taller_id\": {{tallerId}},\n    \"nombre_alumno\": \"Vertiz Angeles Jose Elias Caleb\",\n    \"boleta\": \"2025090784\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "asistencias del taller",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/talleres/{{tallerId}}/asistencias"
+          },
+          "response": []
+        },
+        {
+          "name": "asistencia incompleta",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/asistencias",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nombre_alumno\": \"Vertiz Angeles Jose Elias Caleb\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "asistencia incompleta",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/asistencias",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"taller_id\": 99999,\n    \"nombre_alumno\": \"Vertiz Angeles Jose Elias Caleb\",\n    \"boleta\": \"2025090784\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "listar usuarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios"
+          },
+          "response": []
+        },
+        {
+          "name": "crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"pepito pepin\",\n  \"correo\": \"postman.2026090069@alumno.cecyt9.local\",\n  \"contrasena\": \"Segura2026\",\n  \"boleta\": \"2026090069\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "ver un usuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/{{usuarioId}}"
+          },
+          "response": []
+        },
+        {
+          "name": "ver usuario no existe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/999999999999"
+          },
+          "response": []
+        },
+        {
+          "name": "crear usuario repetido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"pepito pepin\",\n  \"correo\": \"postman.2026090069@alumno.cecyt9.local\",\n  \"contrasena\": \"Segura2026\",\n  \"boleta\": \"2026090069\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validar correo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"quiquin\",\n  \"correo\": \"postman.2026090069alumno.cecyt9.local\",\n  \"contrasena\": \"Segura2026\",\n  \"boleta\": \"2026090069\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validar boleta",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"pepito pepin\",\n  \"correo\": \"postman.2026090069@alumno.cecyt9.local\",\n  \"contrasena\": \"Segura2026\",\n  \"boleta\": \"202\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validar contraseña",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"pepito pepin\",\n  \"correo\": \"postman.2026090069@alumno.cecyt9.local\",\n  \"contrasena\": \"S\",\n  \"boleta\": \"2026090069\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "validar datos",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"\",\n  \"correo\": \"postman.2026090069@alumno.cecyt9.local\",\n  \"contrasena\": \"Segura2026\",\n  \"boleta\": \"2026090069\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "actualizar usuario",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/{{usuarioId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rol\": \"docente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "actualizar sin datos",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/{{usuarioId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "actualizar el correo repetido",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/{{usuarioId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"correo\": \"postman.2026090069@alumno.cecyt9.local\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "actualiza usuario no existente",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/999999999999999",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"rol\": \"docente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "eliminar un usuario",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/api/usuarios/12"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "prueba de vida",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/saludo"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000",
+      "type": "string"
+    },
+    {
+      "key": "tallerId",
+      "value": "3",
+      "type": "string"
+    },
+    {
+      "key": "usuarioId",
+      "value": "15",
+      "type": "string"
+    }
+  ]
+}

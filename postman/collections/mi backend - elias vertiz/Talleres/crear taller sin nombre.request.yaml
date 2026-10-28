@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/talleres"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "instructor": "otra vez yo"
+    }
+order: 5000

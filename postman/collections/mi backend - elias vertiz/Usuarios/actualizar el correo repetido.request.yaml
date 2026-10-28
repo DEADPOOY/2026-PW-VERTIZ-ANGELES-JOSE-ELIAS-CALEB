@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{baseUrl}}/api/usuarios/{{usuarioId}}"
+method: PUT
+body:
+  type: json
+  content: |-
+    {
+        "correo": "postman.2026090069@alumno.cecyt9.local"
+    }
+order: 12000

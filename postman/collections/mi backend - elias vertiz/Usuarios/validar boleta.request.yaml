@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/api/usuarios"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "nombre": "pepito pepin",
+      "correo": "postman.2026090069@alumno.cecyt9.local",
+      "contrasena": "Segura2026",
+      "boleta": "202"
+    }
+order: 7000

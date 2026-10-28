@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/usuarios/12"
+method: DELETE
+order: 14000

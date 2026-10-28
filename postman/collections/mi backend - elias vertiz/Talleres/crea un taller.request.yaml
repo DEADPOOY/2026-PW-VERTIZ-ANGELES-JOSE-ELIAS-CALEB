@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{baseUrl}}/api/talleres"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+        "nombre": "taller de tu puta madre",
+        "descripcion": "probandome esta",
+        "instructor": "yo merengues",
+        "fecha": "2026-11-20",
+        "cupo": 15
+    }
+order: 4000
