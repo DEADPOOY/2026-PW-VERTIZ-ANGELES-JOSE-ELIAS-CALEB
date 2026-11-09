@@ -8,13 +8,24 @@ const { crearModeloUsuarios } = require('./modelos/usuarios.modelo');
 
 const NOMBRE_COOKIE = 'connect.sid';
 
-// Regresa todas las sesiones del almacén (MemoryStore usa callback; MySQLStore regresa una promesa).
+
+//ahora si que me vale tres hectareas de verga y no entiendo el puto codigo aca bn aca mi el texto aca bien aca
+//entonces lo voy a explicar como se me pincje ingflen los huevos despues de lo que leei ojo
+
+
+// la siguiente pendejada lo que hace es que dice apoco si muy vergas mi todo wey es pa ver todas las sesiones activas en la app.
 function todasLasSesiones(almacen) {
   return new Promise((resolve, reject) => {
     const promesa = almacen.all((error, sesiones) => (error ? reject(error) : resolve(sesiones)));
     if (promesa && typeof promesa.then === 'function') promesa.then(resolve, reject);
   });
 }
+/* me voy a poner un poco mas tecnico pero es porque es importante digamos que esto lo que hace es juntar los logins y enseñarte 
+todo porque cada uno tiene su archivo por searado y express ya tiene una lista pero no es legible o mejor dicho no es algo que un
+humano pueda entender entonces esto te lo da especificamente consigue todos los que les dio a y por cierto es como un if, else porque
+porque de esa manera comprueba que no lo esten timando especificamente porque se le hace importante para que te va a servir esto te 
+va a servir esto te preguntaras pues es para que directamente puedas tener un registro primero y que puedas tener un control mantenimiento
+y sobre todo que si necesitas o pasa algo con esta cosa puedes directamente eliminar o bloquear alguna sesion sospechosa */
 
 // Respuesta para lo que todavía no programamos.
 const pendiente = (paso) => (req, res) =>
